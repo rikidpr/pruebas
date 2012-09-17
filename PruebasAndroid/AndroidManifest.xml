@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--meter estos permisos en otra apli para acceder al provider, que tiene exported=true pa eso-->
+    	<permission android:name="an.dpr.android.content.READ"/>
+		<permission android:name="an.dpr.android.content.WRITE"/>
+        
         <provider 
             android:authorities="an.dpr.android.content"
             android:enabled="true"
