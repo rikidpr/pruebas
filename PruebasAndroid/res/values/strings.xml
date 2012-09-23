@@ -4,5 +4,15 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="listado">Listado</string>
+    <string name="title_activity_listado_bicis">ListadoBicis</string>
+    <string name="title_activity_list_bicis">ListBicis</string>
+    <string name="addBici">Add Bici</string>
+    <string name="title_activity_bici_form">BiciForm</string>
+    <string name="marca">marca</string>
+    <string name="modelo">modelo</string>
+    <string name="grupo">grupo</string>
+    <string name="id">id</string>
+    <string name="save">save</string>
 
 </resources>

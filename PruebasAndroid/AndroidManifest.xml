@@ -4,8 +4,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"
+        android:minSdkVersion="11"
         android:targetSdkVersion="15" />
+
+    <!-- meter estos permisos en otra apli para acceder al provider, que tiene exported=true pa eso -->
+    <permission android:name="an.dpr.android.content.READ" />
+    <permission android:name="an.dpr.android.content.WRITE" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -20,17 +24,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--meter estos permisos en otra apli para acceder al provider, que tiene exported=true pa eso-->
-    	<permission android:name="an.dpr.android.content.READ"/>
-		<permission android:name="an.dpr.android.content.WRITE"/>
-        
-        <provider 
+
+        <provider
+            android:name=".content.PruebaCP"
             android:authorities="an.dpr.android.content"
             android:enabled="true"
-          	android:name=".content.PruebaCP"
-          	android:readPermission="an.dpr.android.content.READ" 
-          	android:writePermission="an.dpr.android.content.WRITE" 
-          	android:exported="true"/>
+            android:exported="true"
+            android:readPermission="an.dpr.android.content.READ"
+            android:writePermission="an.dpr.android.content.WRITE" />
+
+        <activity
+            android:name=".ListBicis"
+            android:label="@string/title_activity_list_bicis" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.app.ListActivity" />
+        </activity>
+        <activity
+            android:name=".BiciForm"
+            android:label="@string/title_activity_bici_form" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

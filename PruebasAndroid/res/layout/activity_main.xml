@@ -3,23 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/btnList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/listado" />
 
-    <TextView
-        android:id="@+id/textView1"
+    <Button
+        android:id="@+id/btnNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_marginBottom="71dp"
-        android:text="TextView" />
+        android:layout_alignBaseline="@+id/btnList"
+        android:layout_alignBottom="@+id/btnList"
+        android:layout_centerHorizontal="true"
+        android:text="@string/addBici" />
 
 </RelativeLayout>
