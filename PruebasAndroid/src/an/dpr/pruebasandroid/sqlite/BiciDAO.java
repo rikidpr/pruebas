@@ -23,19 +23,23 @@ public class BiciDAO {
 	public BiciDAO(Context c) {
 		dbHelper = new BiciDBHelper(c);
 	}
-
+	
 	public long persist(Bici bici) {
+		ContentValues values = new ContentValues();
+		values.put(BiciContract.COLUMN_ID, bici.getBiciId());
+		values.put(BiciContract.COLUMN_MARCA, bici.getMarca());
+		values.put(BiciContract.COLUMN_MODELO, bici.getModelo());
+		values.put(BiciContract.COLUMN_GRUPO, bici.getGrupo());
+		return persist(values);
+	}
+	
+	
+	public long persist(ContentValues values) {
 		Log.d(TAG, "persistBike()");
 		SQLiteDatabase db = null;
 		long retValue = 0;
 		try {
-			ContentValues values = new ContentValues();
-			values.put(BiciContract.COLUMN_ID, bici.getBiciId());
-			values.put(BiciContract.COLUMN_MARCA, bici.getMarca());
-			values.put(BiciContract.COLUMN_MODELO, bici.getModelo());
-			values.put(BiciContract.COLUMN_GRUPO, bici.getGrupo());
-
-			Bici rb = getById(bici.getBiciId());
+			Bici rb = getById(values.get(BiciContract.COLUMN_ID));
 			// abrimos el db despues, porque en getBike se abre un
 			// readableDatabase y daria conflicto
 			db = dbHelper.getWritableDatabase();
