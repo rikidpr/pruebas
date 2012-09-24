@@ -26,7 +26,7 @@
         </activity>
 
         <provider
-            android:name=".content.PruebaCP"
+            android:name=".content.BiciCP"
             android:authorities="an.dpr.android.content"
             android:enabled="true"
             android:exported="true"

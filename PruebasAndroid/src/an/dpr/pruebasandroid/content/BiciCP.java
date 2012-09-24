@@ -1,11 +1,14 @@
 package an.dpr.pruebasandroid.content;
 
 
+import an.dpr.pruebasandroid.sqlite.BiciDAO;
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.net.Uri;
 import android.util.Log;
 
@@ -16,6 +19,8 @@ public class BiciCP extends ContentProvider {
 	
 	private static final int GROUP_CODE = 1;
 	private static final int SINGLE_CODE = 2;
+
+	private BiciDAO dao; 
 	
 	private static final UriMatcher buildUriMatcher(){
     	um = new UriMatcher(UriMatcher.NO_MATCH);
@@ -47,13 +52,13 @@ public class BiciCP extends ContentProvider {
 	}
 
 	@Override
-	public Uri insert(Uri uri, ContentValues values) {
+	public Uri insert(Uri uri, ContentValues contentValues) {
 	    Log.d(TAG, "inicio");
 	    if (um.match(uri) != SINGLE_CODE) {
 	        throw new IllegalArgumentException("Unknown URI " + uri);
 	    }
 	    ContentValues values;
-	    if (values!=null){
+	    if (contentValues!=null){
 	        values = new ContentValues(contentValues);
 	    } else {
 	        values = new ContentValues();
@@ -61,7 +66,7 @@ public class BiciCP extends ContentProvider {
 		
 	    long id = dao.persist(values);
 	    if (id > 0) {
-                Uri retUri = ContentUris.withAppendedId(BiciContract.URI, id);
+                Uri retUri = ContentUris.withAppendedId(BiciContract.CONTENT_URI, id);
                 getContext().getContentResolver().notifyChange(retUri, null);
                 return retUri;
             } else {
@@ -73,6 +78,7 @@ public class BiciCP extends ContentProvider {
 	public boolean onCreate() {
 		Log.d(TAG, "inicio");
 		buildUriMatcher();
+		dao = new BiciDAO(getContext());
 		return true;
 	}
 
@@ -80,14 +86,17 @@ public class BiciCP extends ContentProvider {
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		Log.d(TAG, "inicio");
-		MatrixCursor c = new MatrixCursor(BiciContract.columnNames);
+		Cursor c;
 		switch(um.match(uri)){
 		case GROUP_CODE:
-			c.addRow(new String[]{"1","dateiros"});
-			c.addRow(new String[]{"2","daticos"});
+			c = dao.getListCursor();
 			break;
 		case SINGLE_CODE:
-			c.addRow(new String[]{"3","onlyOneRow"});
+			c = dao.getById(uri.getLastPathSegment());
+			break;
+		default:
+			c = null;
+			break;
 		}
 		return c;
 	}

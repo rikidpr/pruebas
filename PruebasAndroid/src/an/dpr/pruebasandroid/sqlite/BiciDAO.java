@@ -23,7 +23,7 @@ public class BiciDAO {
 	public BiciDAO(Context c) {
 		dbHelper = new BiciDBHelper(c);
 	}
-	
+
 	public long persist(Bici bici) {
 		ContentValues values = new ContentValues();
 		values.put(BiciContract.COLUMN_ID, bici.getBiciId());
@@ -32,22 +32,22 @@ public class BiciDAO {
 		values.put(BiciContract.COLUMN_GRUPO, bici.getGrupo());
 		return persist(values);
 	}
-	
-	
+
 	public long persist(ContentValues values) {
 		Log.d(TAG, "persistBike()");
 		SQLiteDatabase db = null;
 		long retValue = 0;
 		try {
-			Bici rb = getById(values.get(BiciContract.COLUMN_ID));
+			int id = ((Integer) values.get(BiciContract.COLUMN_ID)).intValue();
+			Bici rb = getById(id);
 			// abrimos el db despues, porque en getBike se abre un
 			// readableDatabase y daria conflicto
 			db = dbHelper.getWritableDatabase();
 			if (rb != null) {
-				String where = BiciContract.COLUMN_ID+"=?";
-				String[] valueWhere = new String[] { 
-						Integer.toString(bici.getBiciId()) };
-				retValue = db.update(BiciContract.TABLE_NAME, values, where, valueWhere);
+				String where = BiciContract.COLUMN_ID + "=?";
+				String[] valueWhere = new String[] { Integer.toString(id) };
+				retValue = db.update(BiciContract.TABLE_NAME, values, where,
+						valueWhere);
 			} else {
 				retValue = db.insert(BiciContract.TABLE_NAME, "", values);
 			}
@@ -66,9 +66,10 @@ public class BiciDAO {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		boolean delete = false;
 		try {
-			String whereClause = BiciContract.COLUMN_ID+"=?";
+			String whereClause = BiciContract.COLUMN_ID + "=?";
 			String[] whereArgs = new String[] { Integer.toString(biciId) };
-			int afected = db.delete(BiciContract.TABLE_NAME, whereClause, whereArgs);
+			int afected = db.delete(BiciContract.TABLE_NAME, whereClause,
+					whereArgs);
 			if (afected > 0) {
 				delete = true;
 			}
@@ -87,13 +88,12 @@ public class BiciDAO {
 		Log.d(TAG, "getBikes()");
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		StringBuilder sql = new StringBuilder();
-		sql.append("select ")
-		.append(BiciContract.COLUMN_ID).append(", ")
-		.append(BiciContract.COLUMN_MARCA).append(", ")
-		.append(BiciContract.COLUMN_MODELO).append(", ")
-		.append(BiciContract.COLUMN_GRUPO)
-		.append(" from ").append(BiciContract.TABLE_NAME);
-		
+		sql.append("select ").append(BiciContract.COLUMN_ID).append(", ")
+				.append(BiciContract.COLUMN_MARCA).append(", ")
+				.append(BiciContract.COLUMN_MODELO).append(", ")
+				.append(BiciContract.COLUMN_GRUPO).append(" from ")
+				.append(BiciContract.TABLE_NAME);
+
 		ArrayList<Bici> retValue = new ArrayList<Bici>();
 
 		try {
@@ -113,6 +113,30 @@ public class BiciDAO {
 		}
 
 		return retValue;
+	}
+
+	public Cursor getListCursor() {
+		Log.d(TAG, "getBikes()");
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		StringBuilder sql = new StringBuilder();
+		sql.append("select ").append(BiciContract.COLUMN_ID).append(", ")
+				.append(BiciContract.COLUMN_MARCA).append(", ")
+				.append(BiciContract.COLUMN_MODELO).append(", ")
+				.append(BiciContract.COLUMN_GRUPO).append(" from ")
+				.append(BiciContract.TABLE_NAME);
+
+		Cursor retValue = null;
+
+		try {
+			retValue = db.rawQuery(sql.toString(), null);
+		} catch (Exception e) {
+			Log.e(TAG, "error obteniendo datos", e);
+			// } finally {
+			// if (db != null)
+			// db.close();
+		}
+
+		return retValue;
 
 	}
 
@@ -122,34 +146,35 @@ public class BiciDAO {
 	 * @return null si no existe, objeto Bici si existe
 	 */
 	public Bici getById(int biciId) {
-		Log.d(TAG, "getBike(biciId)");
 		Bici bici = null;
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		StringBuilder sql = new StringBuilder();
-		sql.append("select ")
-		  .append(BiciContract.COLUMN_ID).append(", ")
-		  .append(BiciContract.COLUMN_MARCA).append(", ")
-		  .append(BiciContract.COLUMN_MODELO).append(", ")
-		  .append(BiciContract.COLUMN_GRUPO)
-		  .append(" from ").append(BiciContract.TABLE_NAME)
-		  .append(" where ").append(BiciContract.COLUMN_ID)
-		  .append("=").append(biciId);
-
+		Cursor c = null;
 		try {
-			Cursor c = db.rawQuery(sql.toString(), null);
+			c = getById(String.valueOf(biciId));
 			if (c.getCount() > 0) {
 				c.moveToFirst();
 				bici = getBici(c);
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "error insertando datos", e);
+			Log.e(TAG, "error buscando bici", e);
 		} finally {
-			if (db != null)
-				db.close();
+			c.close();
 		}
-
 		return bici;
+	}
 
+	public Cursor getById(String biciId) {
+		Log.d(TAG, "getBike(biciId)");
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		StringBuilder sql = new StringBuilder();
+		sql.append("select ").append(BiciContract.COLUMN_ID).append(", ")
+				.append(BiciContract.COLUMN_MARCA).append(", ")
+				.append(BiciContract.COLUMN_MODELO).append(", ")
+				.append(BiciContract.COLUMN_GRUPO).append(" from ")
+				.append(BiciContract.TABLE_NAME).append(" where ")
+				.append(BiciContract.COLUMN_ID).append("=").append(biciId);
+
+		Cursor c = db.rawQuery(sql.toString(), null);
+		return c;
 	}
 
 	private Bici getBici(Cursor c) {
