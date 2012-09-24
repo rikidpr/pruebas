@@ -48,9 +48,25 @@ public class BiciCP extends ContentProvider {
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		Log.d(TAG, "inicio");
-		// TODO Auto-generated method stub
-		return null;
+	    Log.d(TAG, "inicio");
+	    if (um.match(uri) != SINGLE_CODE) {
+	        throw new IllegalArgumentException("Unknown URI " + uri);
+	    }
+	    ContentValues values;
+	    if (values!=null){
+	        values = new ContentValues(contentValues);
+	    } else {
+	        values = new ContentValues();
+	    }
+		
+	    long id = dao.persist(values);
+	    if (id > 0) {
+                Uri retUri = ContentUris.withAppendedId(BiciContract.URI, id);
+                getContext().getContentResolver().notifyChange(retUri, null);
+                return retUri;
+            } else {
+	        throw new SQLException("Failed to insert row into " + uri);
+	    }
 	}
 
 	@Override
