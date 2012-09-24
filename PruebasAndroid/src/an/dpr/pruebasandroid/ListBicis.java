@@ -31,22 +31,32 @@ public class ListBicis extends ListActivity {//implements LoaderCallbacks<Cursor
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_bicis);
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-//        // Create a progress bar to display while the list loads
-//        ProgressBar progressBar = new ProgressBar(this);
-//        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-//                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
-//        progressBar.setIndeterminate(true);
-//        getListView().setEmptyView(progressBar);
-//
-//        // Must add the progress bar to the root of the layout
-//        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-//        root.addView(progressBar);
-        
-//        mAdapter = new SimpleCur
-        oldVersionList();
+        //oldVersionList();
+        loadersVersionList(); //con loaders, api 16 en adelante
     }
+	
+	private void loadersVersionList(){
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Create a progress bar to display while the list loads
+        ProgressBar progressBar = new ProgressBar(this);
+        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        progressBar.setIndeterminate(true);
+        getListView().setEmptyView(progressBar);
+
+        // Must add the progress bar to the root of the layout
+        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+        root.addView(progressBar);
+		
+		//columnas y vistas para meter la info
+		String[] fromColumns = new String[]{BiciContract.COLUMN_MARCA, BiciContract.COLUMN_MODELO};
+		int[] toViews = {R.id.text_marca, R.id.text_modelo}
+        
+        mAdapter = new SimpleCursorAdapter(this, R.layout.bici_item, null, fromColumns, toViews, 0);
+		setListAdapter(mAdapter);
+		getLoaderManager().initLoader(0, null, this);
+	}
     
     
 
@@ -60,8 +70,6 @@ public class ListBicis extends ListActivity {//implements LoaderCallbacks<Cursor
 		BiciDAO dao = new BiciDAO(this);
 		return dao.getList();
 	}
-
-
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,18 +88,22 @@ public class ListBicis extends ListActivity {//implements LoaderCallbacks<Cursor
     }
 
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		// TODO Auto-generated method stub
-		return null;
+        // Now create and return a CursorLoader that will take care of
+        // creating a Cursor for the data being displayed.
+        return new CursorLoader(this, BiciContract.URI,
+                PROJECTION, WHERE, null, null);
 	}
 
-	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
-		// TODO Auto-generated method stub
-		
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // Swap the new cursor in.  (The framework will take care of closing the
+        // old cursor once we return.)
+        mAdapter.swapCursor(data);
 	}
 
-	public void onLoaderReset(Loader<Cursor> arg0) {
-		// TODO Auto-generated method stub
-		
+	public void onLoaderReset(Loader<Cursor> loader) {
+        // This is called when the last Cursor provided to onLoadFinished()
+        // above is about to be closed.  We need to make sure we are no
+        // longer using it.
+        mAdapter.swapCursor(null);
 	}
-
 }
