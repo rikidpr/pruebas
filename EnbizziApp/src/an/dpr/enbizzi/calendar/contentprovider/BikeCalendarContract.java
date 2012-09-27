@@ -1,4 +1,4 @@
-package an.dpr.enbizzi.calendar.ContentProvider;
+package an.dpr.enbizzi.calendar.contentprovider;
 
 import java.text.SimpleDateFormat;
 
@@ -19,11 +19,12 @@ public class BikeCalendarContract {
 	public static final String COL_ROUTE = "ROUTE";
 	public static final String COL_STOP = "STOP";
 	public static final String COL_TYPE = "TYPE";
+	public static final String COL_ELEVATION_GAIN = "ELEVATION_GAIN";
 
 	// COLUMNS
 	public static final String[] COLUMN_NAMES = { COL_ID, COL_DATE,
 			COL_DIFFICULTY, COL_KM, COL_RETURN_ROUTE, COL_ROUTE, COL_STOP,
-			COL_TYPE };
+			COL_TYPE, COL_ELEVATION_GAIN };
 
 	// URI
 	public static final String CONTENT_AUTHORITY = "an.dpr.enbizzi";
@@ -41,7 +42,7 @@ public class BikeCalendarContract {
 		
 		rv.put(COL_ID, bean.getId());
 		rv.put(COL_DATE, sdf.format(bean.getDate()));
-		rv.put(COL_DIFFICULTY, bean.getDificulty().name());
+		rv.put(COL_DIFFICULTY, bean.getDifficulty().name());
 		rv.put(COL_KM, bean.getKm());
 		rv.put(COL_RETURN_ROUTE, bean.getReturnRoute());
 		rv.put(COL_ROUTE, bean.getRoute());

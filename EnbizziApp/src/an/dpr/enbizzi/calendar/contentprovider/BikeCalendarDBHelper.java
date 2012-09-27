@@ -1,4 +1,4 @@
-package an.dpr.enbizzi.calendar.ContentProvider;
+package an.dpr.enbizzi.calendar.contentprovider;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +18,8 @@ public class BikeCalendarDBHelper extends SQLiteOpenHelper{
 					BikeCalendarContract.COL_RETURN_ROUTE +" text," +
 					BikeCalendarContract.COL_ROUTE +" text," +
 					BikeCalendarContract.COL_STOP +" text," +
-					BikeCalendarContract.COL_TYPE +" text" +
+					BikeCalendarContract.COL_TYPE +" text," +
+					BikeCalendarContract.COL_ELEVATION_GAIN +" integer" +
 					")";
 
 	private static final String DB_DROP_FOR_UPDATE = 

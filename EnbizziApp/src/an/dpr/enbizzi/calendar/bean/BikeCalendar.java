@@ -1,22 +1,28 @@
 package an.dpr.enbizzi.calendar.bean;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
+
+import an.dpr.enbizzi.util.UtilFecha;
+import android.util.Log;
 
 public class BikeCalendar implements Serializable {
 
 	/**
-	 * FOR SERLIALIZABLE 
+	 * FOR SERLIALIZABLE
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private static final String TAG = BikeCalendar.class.getName();
+
 	private int id;
 	private Date date; // fecha/hora
 	private String route;
 	private String returnRoute;
 	private String stop;
 	private Float km;
-	private Difficulty dificulty;
+	private Integer elevationGain;
+	private Difficulty difficulty;
 	private CyclingType type;
 
 	/**
@@ -33,7 +39,6 @@ public class BikeCalendar implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 
 	/**
 	 * @return the date
@@ -65,7 +70,6 @@ public class BikeCalendar implements Serializable {
 		this.route = route;
 	}
 
-
 	/**
 	 * @return the returnRoute
 	 */
@@ -80,7 +84,6 @@ public class BikeCalendar implements Serializable {
 	public void setReturnRoute(String returnRoute) {
 		this.returnRoute = returnRoute;
 	}
-	
 
 	/**
 	 * @return the stop
@@ -115,16 +118,16 @@ public class BikeCalendar implements Serializable {
 	/**
 	 * @return the dificulty
 	 */
-	public Difficulty getDificulty() {
-		return dificulty;
+	public Difficulty getDifficulty() {
+		return difficulty;
 	}
 
 	/**
 	 * @param dificulty
 	 *            the dificulty to set
 	 */
-	public void setDificulty(Difficulty dificulty) {
-		this.dificulty = dificulty;
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 
 	/**
@@ -142,14 +145,33 @@ public class BikeCalendar implements Serializable {
 		this.type = type;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "BikeCalendar [id=" + id + ", date=" + date + ", route=" + route
 				+ ", returnRoute=" + returnRoute + ", stop=" + stop + ", km="
-				+ km + ", dificulty=" + dificulty + ", type=" + type + "]";
+				+ km + ", elevationGain=" + elevationGain + ", dificulty="
+				+ difficulty + ", type=" + type + "]";
+	}
+
+	public Integer getElevationGain() {
+		return elevationGain;
+	}
+
+	public void setElevationGain(Integer elevationGain) {
+		this.elevationGain = elevationGain;
+	}
+
+	public void setDate(String fecha) {
+		try {
+			this.date = UtilFecha.SDF.parse(fecha);
+		} catch (ParseException e) {
+			Log.e(TAG, "Fecha en formato incorrecto:"+fecha);
+		}
 	}
 
 }

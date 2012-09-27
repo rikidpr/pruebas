@@ -19,6 +19,15 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="16dp"
-        android:text="Button" />
+        android:text="cp" />
+
+    <Button
+        android:id="@+id/btnXml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_marginBottom="24dp"
+        android:text="xml" />
 
 </RelativeLayout>

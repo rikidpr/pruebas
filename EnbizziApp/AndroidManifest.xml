@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme" >
         
         <provider
-            android:name=".calendar.ContentProvider.BikeCalendarCP"
+            android:name=".calendar.contentprovider.BikeCalendarCP"
             android:authorities="an.dpr.enbizzi"
             android:enabled="true"
             android:exported="false"

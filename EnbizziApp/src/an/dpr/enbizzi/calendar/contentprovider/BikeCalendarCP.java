@@ -1,4 +1,4 @@
-package an.dpr.enbizzi.calendar.ContentProvider;
+package an.dpr.enbizzi.calendar.contentprovider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
