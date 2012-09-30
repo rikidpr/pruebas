@@ -3,31 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
-
     <Button
         android:id="@+id/btnPrueba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
         android:text="cp" />
+
+    <Button
+        android:id="@+id/btnNet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnPrueba"
+        android:layout_alignBottom="@+id/btnPrueba"
+        android:layout_toRightOf="@+id/btnPrueba"
+        android:text="net" />
 
     <Button
         android:id="@+id/btnXml"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="24dp"
+        android:layout_below="@+id/btnPrueba"
+        android:layout_toLeftOf="@+id/btnNet"
         android:text="xml" />
+
+    <Button
+        android:id="@+id/btnList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnXml"
+        android:layout_alignBottom="@+id/btnXml"
+        android:layout_alignLeft="@+id/btnNet"
+        android:text="list" />
+
+    <Button
+        android:id="@+id/btnInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnXml"
+        android:layout_toLeftOf="@+id/btnList"
+        android:text="info" />
+
+    <Button
+        android:id="@+id/btnDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnInfo"
+        android:layout_alignBottom="@+id/btnInfo"
+        android:layout_toRightOf="@+id/btnInfo"
+        android:text="del" />
 
 </RelativeLayout>

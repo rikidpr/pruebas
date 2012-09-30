@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 
 import an.dpr.enbizzi.calendar.bean.BikeCalendar;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -40,7 +41,7 @@ public class BikeCalendarContract {
 		ContentValues rv = new ContentValues();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		rv.put(COL_ID, bean.getId());
+		rv.put(COL_ID, bean.getId()>0 ? bean.getId() : null);
 		rv.put(COL_DATE, sdf.format(bean.getDate()));
 		rv.put(COL_DIFFICULTY, bean.getDifficulty().name());
 		rv.put(COL_KM, bean.getKm());
@@ -48,8 +49,31 @@ public class BikeCalendarContract {
 		rv.put(COL_ROUTE, bean.getRoute());
 		rv.put(COL_STOP, bean.getStop());
 		rv.put(COL_TYPE, bean.getType().name());
+		rv.put(COL_ELEVATION_GAIN, bean.getElevationGain());
 		
 		return rv;
+	}
+	
+	public static Uri getQueryUri(long id){
+		StringBuilder uriText = new StringBuilder();
+		uriText.append("content://").append(CONTENT_AUTHORITY)
+			.append("/").append(PATH).append("/").append(id);
+		Uri uri = Uri.parse(uriText.toString());
+		return uri;
+	}
+
+	public static BikeCalendar getBikeCalendar(Cursor c) {
+		BikeCalendar bean = new BikeCalendar();
+		bean.setReturnRoute(c.getString(c.getColumnIndex(COL_RETURN_ROUTE)));
+		bean.setRoute(c.getString(c.getColumnIndex(COL_ROUTE)));
+		bean.setStop(c.getString(c.getColumnIndex(COL_STOP)));
+		bean.setDifficulty(c.getString(c.getColumnIndex(COL_DIFFICULTY)));
+		bean.setType(c.getString(c.getColumnIndex(COL_TYPE)));
+		bean.setDate(c.getString(c.getColumnIndex(COL_DATE)));
+		bean.setElevationGain(c.getInt(c.getColumnIndex(COL_ELEVATION_GAIN)));
+		bean.setId(c.getInt(c.getColumnIndex(COL_ID)));
+		bean.setKm(c.getFloat(c.getColumnIndex(COL_KM)));
+		return bean;
 	}
 
 }

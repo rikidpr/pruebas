@@ -18,7 +18,7 @@ import android.util.Xml;
 
 public class XMLCalendarConverter {
 	// FIXME esto es solo para probar, hay que leerlo de internet
-	private static final String xmlText = "<calendar><year>2012</year><club>Enbizzi</club><version>1</version>"
+	public static final String xmlText = "<calendar><year>2012</year><club>Enbizzi</club><version>1</version>"
 			+ "<event><date>03/03/2012</date><stop>Monegrillo</stop><route>Monegrillo</route>"
 			+ "<returnRoute>Monegrillo</returnRoute><difficulty>EASY</difficulty><km>87</km>"
 			+ "<elevationGain>269</elevationGain><type>ROAD</type></event><event><date>04/03/2012</date>"
@@ -57,22 +57,18 @@ public class XMLCalendarConverter {
 		return rv;
 	}
 
-	public static List<BikeCalendar> getCalendarViaNewPullParser(InputStream in)
+	public static List<BikeCalendar> getCalendarViaNewPullParser(String xml)
 			throws XmlPullParserException, IOException {
 		List<BikeCalendar> rv = null;
 		try {
 			XmlPullParser parser = Xml.newPullParser();
 			parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-			parser.setInput(new StringReader(xmlText));// in, null);
+			parser.setInput(new StringReader(xml));// in, null);
 			parser.nextTag();
 			rv = readCalendar(parser);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			if (in != null) {
-				in.close();
-			}
 		}
 		return rv;
 	}
@@ -109,6 +105,7 @@ public class XMLCalendarConverter {
 		boolean continuar = true;
 		do {
 			int next = parser.next();
+			Log.d(TAG, ""+parser.getName());
 			BikeCalendarXMLTags bcx = BikeCalendarXMLTags.valueOf(parser
 					.getName());
 			Log.d(TAG + ".getCalendarItem",

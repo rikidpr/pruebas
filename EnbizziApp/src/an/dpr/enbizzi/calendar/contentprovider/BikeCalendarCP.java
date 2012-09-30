@@ -16,7 +16,7 @@ public class BikeCalendarCP extends ContentProvider {
 
 	private static final int ITEM_TYPE = 1;
 	private static final int DIR_TYPE = 2;
-	private UriMatcher um;
+	private static UriMatcher um;
 	private BikeCalendarDBHelper dbHelper;
 
 	@Override
@@ -80,8 +80,10 @@ public class BikeCalendarCP extends ContentProvider {
 		}
 
 		SQLiteDatabase con = dbHelper.getWritableDatabase();
+		Log.d(TAG, "valor id:"+values.getAsInteger(BikeCalendarContract.COL_ID));
 		long id = con.insert(BikeCalendarContract.TABLE_NAME, null, values);
-		if (id > 0) {
+		Log.d(TAG, "insertado con id="+id);
+		if (id >= 0) {
 			rv = ContentUris.withAppendedId(BikeCalendarContract.CONTENT_URI,
 					id);
 			getContext().getContentResolver().notifyChange(rv, null);
@@ -95,17 +97,18 @@ public class BikeCalendarCP extends ContentProvider {
 	@Override
 	public boolean onCreate() {
 		Log.d(TAG, "onCreate");
-		buildUriMatcher();
+		um = buildUriMatcher();
 		dbHelper = new BikeCalendarDBHelper(getContext());
 		return true;
 	}
 
-	private void buildUriMatcher() {
+	private UriMatcher buildUriMatcher() {
 		um = new UriMatcher(UriMatcher.NO_MATCH);
 		um.addURI(BikeCalendarContract.CONTENT_AUTHORITY,BikeCalendarContract.PATH, DIR_TYPE);
 		um.addURI(BikeCalendarContract.CONTENT_AUTHORITY,BikeCalendarContract.PATH + "/#", ITEM_TYPE);
+		return um;
 	}
-
+	
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {

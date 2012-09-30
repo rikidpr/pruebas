@@ -129,7 +129,18 @@ public class BikeCalendar implements Serializable {
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
-
+	
+	public void setDifficulty(String string) {
+		try {
+			this.difficulty = Difficulty.valueOf(string);
+		} catch(IllegalArgumentException e){
+			Log.e(TAG, string+" no es una 'dificultad' valida");
+			this.difficulty = null;
+		} catch(NullPointerException e){
+			this.difficulty = null;
+		}
+	}
+	
 	/**
 	 * @return the type
 	 */
@@ -145,6 +156,16 @@ public class BikeCalendar implements Serializable {
 		this.type = type;
 	}
 
+	public void setType(String string) {
+		try {
+			this.type = CyclingType.valueOf(string);
+		} catch(IllegalArgumentException e){
+			Log.e(TAG, string+" no es un 'tipoCiclismo' valido");
+			this.difficulty = null;
+		} catch(NullPointerException e){
+			this.difficulty = null;
+		}
+	}
 	/*
 	 * (non-Javadoc)
 	 * 

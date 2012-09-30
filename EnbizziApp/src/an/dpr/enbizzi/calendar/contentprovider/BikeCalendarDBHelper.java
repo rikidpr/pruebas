@@ -11,7 +11,7 @@ public class BikeCalendarDBHelper extends SQLiteOpenHelper{
 	
 	private static final String DB_CREATE = 
 			"CREATE TABLE "+BikeCalendarContract.TABLE_NAME+"(" +
-					BikeCalendarContract.COL_ID +" integer primary key," +
+					BikeCalendarContract.COL_ID +" integer primary key autoincrement," +
 					BikeCalendarContract.COL_DATE +" text," +
 					BikeCalendarContract.COL_DIFFICULTY +" text," +
 					BikeCalendarContract.COL_KM +" real," +
@@ -27,7 +27,7 @@ public class BikeCalendarDBHelper extends SQLiteOpenHelper{
 
 	
 	public BikeCalendarDBHelper(Context context){
-		super(context, BikeCalendarContract.TABLE_NAME+".db", null, 1);
+		super(context, BikeCalendarContract.TABLE_NAME+".db", null, 2);
 	}
 
 	@Override
