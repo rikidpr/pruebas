@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+       android:key="txtLogin"
+       android:title="@string/conf.login"
+       android:summary="@string/conf.loginDesc"
+       android:dialogTitle="@string/conf.login" />
+    <EditTextPreference
+       android:key="txtPass"
+       android:password="true"
+       android:title="@string/conf.pass"
+       android:summary="@string/conf.passDesc"
+       android:dialogTitle="@string/conf.pass" />
+    <EditTextPreference
+       android:key="txtCode"
+       android:title="@string/conf.code"
+       android:summary="@string/conf.codeDesc"
+       android:dialogTitle="@string/conf.code" />
+    <EditTextPreference
+       android:key="txtInterval"
+       android:title="@string/conf.interval"
+       android:summary="@string/conf.intervalDesc"
+       android:dialogTitle="@string/conf.interval" />
+</PreferenceScreen>

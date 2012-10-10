@@ -7,7 +7,6 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.database.SQLException;
 import android.net.Uri;
 import android.util.Log;

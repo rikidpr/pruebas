@@ -34,7 +34,7 @@ public class CalendarList extends ListActivity implements LoaderCallbacks<Cursor
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar_list);
+        setContentView(R.layout.calendar_list);
         
         getActionBar().setDisplayHomeAsUpEnabled(true);
         

@@ -54,4 +54,12 @@
         android:layout_toRightOf="@+id/btnInfo"
         android:text="del" />
 
+    <Button
+        android:id="@+id/btnTuits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnDel"
+        android:layout_alignLeft="@+id/btnInfo"
+        android:text="tuits enbizzi" />
+
 </RelativeLayout>

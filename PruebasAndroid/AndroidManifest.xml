@@ -20,6 +20,7 @@
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,7 +32,7 @@
             android:exported="true"
             android:readPermission="an.dpr.android.content.READ"
             android:writePermission="an.dpr.android.content.WRITE" />
-        
+
         <activity
             android:name=".ListBicis"
             android:label="@string/title_activity_list_bicis" >
@@ -47,6 +48,22 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ItemListActivity"
+            android:label="@string/title_item_list" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ItemDetailActivity"
+            android:label="@string/title_item_detail" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ItemListActivity" />
         </activity>
     </application>
 

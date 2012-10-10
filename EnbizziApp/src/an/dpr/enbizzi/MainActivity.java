@@ -9,6 +9,7 @@ import an.dpr.enbizzi.calendar.bean.Difficulty;
 import an.dpr.enbizzi.calendar.contentprovider.BikeCalendarContract;
 import an.dpr.enbizzi.calendar.network.CalendarService;
 import an.dpr.enbizzi.calendar.xml.XMLCalendarConverter;
+import an.dpr.enbizzi.twitter.TuitsEnbizzi;
 import an.dpr.enbizzi.util.NotificationUtil;
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
@@ -89,7 +90,18 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				launchDel();
-			}});
+			}}); 
+	 	
+
+
+		Button btnTuits = (Button) findViewById(R.id.btnTuits);
+		btnTuits.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				TuitsEnbizzi.leerTuitsEnbizzi();
+			}
+		});
 	}
 
 	protected void launchDel(){
@@ -111,7 +123,8 @@ public class MainActivity extends Activity {
 	}
 
 	protected void launchList() {
-		Intent i = new Intent(this, CalendarList.class);
+//		Intent i = new Intent(this, CalendarList.class);
+		Intent i = new Intent(this, CalendarListActivity.class);
 		startActivity(i);
 	}
 

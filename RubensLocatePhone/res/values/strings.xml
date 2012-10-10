@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">RubensLocatePhone</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_settings">App Settings</string>
+    
+    <string name="conf.login">Login</string>
+    <string name="conf.pass">Pass</string>
+    <string name="conf.code">Code</string>
+    <string name="conf.interval">Intervalo</string>
+    <string name="conf.save">Save</string>
+    
+    <string name="conf.loginDesc">Login en locatephone.rubenlor.es</string>
+    <string name="conf.passDesc">Pass en locatephone.rubenlor.es</string>
+    <string name="conf.codeDesc">Code del dispositivo registrado</string>
+    <string name="conf.intervalDesc">Minutos cada los que registramos posicion</string>
+
+</resources>

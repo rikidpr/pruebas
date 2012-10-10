@@ -1,9 +1,6 @@
 package an.dpr.pruebasandroid;
 
-import an.dpr.pruebasandroid.content.BiciContract;
-import an.dpr.pruebasandroid.sqlite.Bici;
 import an.dpr.pruebasandroid.sqlite.BiciDAO;
-import an.dpr.pruebasandroid.util.NotificationUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;

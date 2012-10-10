@@ -51,8 +51,8 @@ public class ListBicis extends ListActivity implements LoaderCallbacks<Cursor> {
 
 		// Create a progress bar to display while the list loads
 		ProgressBar progressBar = new ProgressBar(this);
-		progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+		progressBar.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
 		progressBar.setIndeterminate(true);
 		getListView().setEmptyView(progressBar);
 
