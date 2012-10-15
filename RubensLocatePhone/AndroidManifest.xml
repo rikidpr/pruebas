@@ -33,7 +33,7 @@
             android:name=".broadcast.LocationBroadcastReceiver"
             android:enabled="true" >
             <intent-filter>
-                <action android:name="android.location.LocationManager.KEY_LOCATION_CHANGED" />
+                <action android:name="an.dpr.accion.rubenslocatephone" />
             </intent-filter>
         </receiver>
 
@@ -49,9 +49,18 @@
             android:name=".broadcast.BootBroadcastReceiver"
             android:enabled="true" >
             <intent-filter>
-                <action android:name="android.location.LocationManager.KEY_LOCATION_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        
+        <!-- SERVICES -->
+        <service
+            android:name=".network.RubensService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="an.dpr.accion.rubenslocatephone" />
+            </intent-filter>
+        </service>
 
     </application>
 

@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
-       android:key="txtLogin"
+       android:key="login"
        android:title="@string/conf.login"
        android:summary="@string/conf.loginDesc"
        android:dialogTitle="@string/conf.login" />
     <EditTextPreference
-       android:key="txtPass"
+       android:key="pass"
        android:password="true"
        android:title="@string/conf.pass"
        android:summary="@string/conf.passDesc"
        android:dialogTitle="@string/conf.pass" />
     <EditTextPreference
-       android:key="txtCode"
+       android:key="code"
        android:title="@string/conf.code"
        android:summary="@string/conf.codeDesc"
        android:dialogTitle="@string/conf.code" />
     <EditTextPreference
-       android:key="txtInterval"
-       android:title="@string/conf.interval"
-       android:summary="@string/conf.intervalDesc"
-       android:dialogTitle="@string/conf.interval" />
+       android:key="minTime"
+       android:title="@string/conf.min.time"
+       android:summary="@string/conf.min.time.desc"
+       android:dialogTitle="@string/conf.min.time" />
+    <EditTextPreference
+       android:key="minDistance"
+       android:title="@string/conf.min.distance"
+       android:summary="@string/conf.min.distance.desc"
+       android:dialogTitle="@string/conf.min.distance" />
 </PreferenceScreen>

@@ -11,11 +11,15 @@
     <string name="conf.pass">Pass</string>
     <string name="conf.code">Code</string>
     <string name="conf.interval">Intervalo</string>
+    <string name="conf.min.time">Tiempo minimo</string>
+    <string name="conf.min.distance">Distancia Minima</string>
     <string name="conf.save">Save</string>
     
     <string name="conf.loginDesc">Login en locatephone.rubenlor.es</string>
     <string name="conf.passDesc">Pass en locatephone.rubenlor.es</string>
     <string name="conf.codeDesc">Code del dispositivo registrado</string>
+    <string name="conf.min.time.desc">Tiempo minimo para lanzar un posicionamiento</string>
+    <string name="conf.min.distance.desc">Distancia Minima para lanzar un posicionamiento</string>
     <string name="conf.intervalDesc">Minutos cada los que registramos posicion</string>
 
 </resources>

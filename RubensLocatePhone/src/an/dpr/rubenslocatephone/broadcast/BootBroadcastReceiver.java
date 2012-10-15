@@ -12,7 +12,7 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		Log.d(TAG, "este si lo rulamooooos");
+		Log.d(TAG, "boot, este si lo rulamooooos");
 		
 	}
 
