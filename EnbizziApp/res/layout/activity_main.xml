@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:text="cp" />
+        android:onClick="calendarTabs"
+        android:text="Tabs" />
 
     <Button
         android:id="@+id/btnNet"
@@ -53,13 +54,30 @@
         android:layout_alignBottom="@+id/btnInfo"
         android:layout_toRightOf="@+id/btnInfo"
         android:text="del" />
-
+    
     <Button
         android:id="@+id/btnTuits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnDel"
         android:layout_alignLeft="@+id/btnInfo"
-        android:text="tuits enbizzi" />
+        android:layout_below="@+id/btnDel"
+        android:background="@drawable/logo_enbizzi" 
+        android:text="tuits"
+        android:textColor="#00FF00"
+        android:textColorHighlight="#AAAAAA"
+        />
+
+    <Button
+        android:id="@+id/btnGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnTuits"
+        android:layout_below="@+id/btnTuits"
+        android:onClick="gridCalendar"
+        android:text="GridCalendar"
+        android:textColor="#00FF00"
+        android:textColorHighlight="#AAAAAA"
+        android:textColorHint="#FF0000"
+        android:background="@drawable/logo_enbizzi" />
 
 </RelativeLayout>

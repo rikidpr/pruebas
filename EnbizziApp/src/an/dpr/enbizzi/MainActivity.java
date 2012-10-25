@@ -39,14 +39,14 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Button btn = (Button) findViewById(R.id.btnPrueba);
-		btn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				prueba();
-			}
-		});
+//		Button btn = (Button) findViewById(R.id.btnPrueba);
+//		btn.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				prueba();
+//			}
+//		});
 
 		Button btnXml = (Button) findViewById(R.id.btnXml);
 		btnXml.setOnClickListener(new OnClickListener() {
@@ -256,5 +256,15 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+
+	public void gridCalendar(View v){
+		Intent i = new Intent("an.dpr.enbizzi.calendarGrid");
+		startActivity(i);
+	}
+
+	public void calendarTabs(View v){
+		Intent i = new Intent("an.dpr.enbizzi.calendarMain");
+		startActivity(i);
 	}
 }

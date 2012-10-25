@@ -10,4 +10,4 @@ public class CalendarListActivity extends Activity{
 		super.setContentView(R.layout.activity_calendar_list);
 	}
 
-}
+}	

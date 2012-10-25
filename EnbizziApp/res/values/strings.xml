@@ -5,5 +5,10 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_calendar_list">CalendarList</string>
+    <string name="title_activity_calendar_grid">CalendarGrid</string>
+    <string name="salidas">Salidas</string>
+    <string name="proximas_salidas">Proximas</string>
+    <string name="proximas_marchas">Marchas</string>
+    <string name="title_activity_calendar_tabs">Calendario</string>
 
 </resources>
