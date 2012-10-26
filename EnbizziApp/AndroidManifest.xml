@@ -29,8 +29,11 @@
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="an.dpr.enbizzi.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <!--
@@ -42,7 +45,6 @@
         <activity android:name=".CalendarGrid" >
             <intent-filter>
                 <action android:name="an.dpr.enbizzi.calendarGrid" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <!-- <category android:name="an.dpr.enbizzi.calendar"/> -->
             </intent-filter>

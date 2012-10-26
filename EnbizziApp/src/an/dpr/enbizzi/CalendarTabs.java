@@ -1,126 +1,95 @@
 package an.dpr.enbizzi;
 
+import an.dpr.enbizzi.listener.TabListener;
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MenuItem;
 
-public class CalendarTabs extends FragmentActivity implements ActionBar.TabListener {
+public class CalendarTabs extends FragmentActivity {
 
-    private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-    private static final String TAB_SALIDAS="TAB_SALIDAS";
-    private static final String TAB_PROXIMAS="TAB_PROXIMAS";
-    private static final String TAB_MARCHAS="TAB_MARCHAS";
-    
-    private Fragment salidasFr;
-    private Fragment proximasFr;
-    private Fragment marchasFr;
+	private static final String TAG = CalendarTabs.class.getName();
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar_tabs);
+	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+	private static final String TAB_CALENDARIO = "TAB_CALENDARIO";
+	private static final String TAB_PROXIMAS = "TAB_PROXIMAS";
+	private static final String TAB_MARCHAS = "TAB_MARCHAS";
 
-        // Set up the action bar.
-        final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_calendar_tabs);
+		Log.d(TAG, "creado layout");
 
-        // For each of the sections in the app, add a tab to the action bar.
-        ActionBar.Tab tab = actionBar.newTab();
-        tab.setTag(TAB_SALIDAS);
-        tab.setTabListener(this);
-        actionBar.addTab(tab);
-        
-        tab = actionBar.newTab();
-        tab.setTag(TAB_PROXIMAS);
-        tab.setTabListener(this);
-        actionBar.addTab(tab);
-        
-        tab = actionBar.newTab();
-        tab.setTag(TAB_MARCHAS);
-        tab.setTabListener(this);
-        actionBar.addTab(tab);
-    }
+		// Set up the action bar.
+		final ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		Log.d(TAG, "navegacion tab");
+		actionBar.setHomeButtonEnabled(true);
 
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
-            getActionBar().setSelectedNavigationItem(
-                    savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
-        }
-    }
+		// For each of the sections in the app, add a tab to the action bar.
+		ActionBar.Tab tab = actionBar.newTab();
+		tab.setTag(TAB_CALENDARIO);
+		tab.setText(R.string.tab_calendario);
+		tab.setTabListener(new TabListener<CalendarGridForTab>(this,
+				TAB_CALENDARIO, CalendarGridForTab.class));
+		actionBar.addTab(tab);
+		Log.d(TAG, "add tab calendario");
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(STATE_SELECTED_NAVIGATION_ITEM,
-                getActionBar().getSelectedNavigationIndex());
-    }
+		tab = actionBar.newTab();
+		tab.setTag(TAB_PROXIMAS);
+		tab.setText(R.string.tab_proximas_salidas);
+		tab.setTabListener(new TabListener<CalendarListFragment>(this,
+				TAB_PROXIMAS, CalendarListFragment.class));
+		actionBar.addTab(tab);
+		Log.d(TAG, "add tab salidas");
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_calendar_tabs, menu);
-        return true;
-    }
-
-    
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, show the tab contents in the container
-    	if (TAB_SALIDAS.equals(tab.getTag())){
-    		fragmentTransaction.attach(getSalidasFr());
-    	} else {
-    		Toast.makeText(this, "por implementar", Toast.LENGTH_SHORT).show();
-//	        Fragment fragment = new DummySectionFragment();
-//	        Bundle args = new Bundle();
-//	        args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, tab.getPosition() + 1);
-//	        fragment.setArguments(args);
-//	        getSupportFragmentManager().beginTransaction()
-//	                .replace(R.id.container, fragment)
-//	                .commit();
-    	}
-    }
-
-    private Fragment getSalidasFr() {
-		if (salidasFr==null){
-			 salidasFr = Fragment.instantiate(this, CalendarGridFragment.class.getName());
-		}
-		return salidasFr;
+		tab = actionBar.newTab();
+		tab.setTag(TAB_MARCHAS);
+		tab.setText(R.string.tab_marchas);
+		tab.setTabListener(new TabListener<MarchasFragment>(this, TAB_MARCHAS,
+				MarchasFragment.class));
+		actionBar.addTab(tab);
+		Log.d(TAG, "add tab marchas");
 	}
 
 	@Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+		if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
+			getActionBar().setSelectedNavigationItem(
+					savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
+		}
+	}
 
-    /**
-     * A dummy fragment representing a section of the app, but that simply displays dummy text.
-     */
-    public static class DummySectionFragment extends Fragment {
-        public DummySectionFragment() {
-        }
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar()
+				.getSelectedNavigationIndex());
+	}
 
-        public static final String ARG_SECTION_NUMBER = "section_number";
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_calendar_tabs, menu);
+		return true;
+	}
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            Bundle args = getArguments();
-            textView.setText(Integer.toString(args.getInt(ARG_SECTION_NUMBER)));
-            return textView;
-        }
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean ret = false;
+		Log.d(TAG, String.valueOf(item.getItemId()));
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent("an.dpr.enbizzi.MAIN");
+			//borramos el historial al volver a home
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			ret = true;
+		default:
+			ret = super.onOptionsItemSelected(item);
+		}
+		return ret;
+	}
 }

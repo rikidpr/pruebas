@@ -14,6 +14,6 @@ public class CalendarGridFragment extends Fragment {
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
 		 super.onCreateView(inflater, container, savedInstanceState);
-		 return inflater.inflate(R.layout.calendar_grid, container);
+		 return inflater.inflate(R.layout.calendar_grid, container, false);
 	 }
 }
