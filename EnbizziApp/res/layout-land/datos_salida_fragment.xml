@@ -5,6 +5,7 @@
 
     <TextView
         android:id="@+id/lblFecha"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="25dp"
@@ -17,10 +18,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblFecha"
         android:layout_toRightOf="@+id/lblFecha"
+        android:layout_marginLeft="20dp"
         android:text="-" />
 
     <TextView
         android:id="@+id/lblRuta"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -35,10 +38,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblRuta"
         android:layout_toRightOf="@+id/lblRuta"
+        android:layout_alignLeft="@+id/txtFecha"
         android:text="-" />
 
     <TextView
         android:id="@+id/lblKm"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -53,10 +58,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblKm"
         android:layout_toRightOf="@+id/lblKm"
+        android:layout_alignLeft="@+id/txtFecha"
         android:text="-" />
 
     <TextView
         android:id="@+id/lblParada"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -71,15 +78,19 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblParada"
         android:layout_toRightOf="@+id/lblParada"
+        android:layout_alignLeft="@+id/txtFecha"
         android:text="-" />
+    
+    <!-- DERECHA -->
 
     <TextView
         android:id="@+id/lblRutaRetorno"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblParada"
-        android:paddingLeft="25dp"
-        android:paddingTop="25dp"
+        android:layout_toRightOf="@+id/txtFecha"
+        android:layout_alignBottom="@+id/txtFecha"
+        android:layout_marginLeft="75dp"
         android:text="@string/lblRutaRetorno" />
 
     <TextView
@@ -88,16 +99,17 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblRutaRetorno"
         android:layout_toRightOf="@+id/lblRutaRetorno"
+        android:layout_marginLeft="40dp"
         android:text="-" />
 
     <TextView
         android:id="@+id/lblDificultad"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/txtFecha"
-        android:paddingLeft="25dp"
-        android:paddingTop="25dp"
+        android:layout_toRightOf="@+id/txtRuta"
+        android:layout_alignBottom="@+id/txtRuta"
+        android:layout_alignLeft="@+id/lblRutaRetorno"
         android:text="@string/lblDificultad" />
 
     <TextView
@@ -106,17 +118,17 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblDificultad"
         android:layout_toRightOf="@+id/lblDificultad"
+        android:layout_alignLeft="@+id/txtRutaRetorno"
         android:text="-" />
 
     <TextView
         android:id="@+id/lblAltitudAcumulada"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_alignLeft="@+id/lblDificultad"
-        android:layout_below="@+id/lblDificultad"
-        android:paddingLeft="25dp"
-        android:paddingTop="25dp"
+        android:layout_toRightOf="@+id/txtKm"
+        android:layout_alignBottom="@+id/txtKm"
+        android:layout_alignLeft="@+id/lblRutaRetorno"
         android:text="@string/lblAltitudAcumulada" />
 
     <TextView
@@ -125,18 +137,18 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblAltitudAcumulada"
         android:layout_toRightOf="@+id/lblAltitudAcumulada"
+        android:layout_alignLeft="@+id/txtRutaRetorno"
         android:text="-" />
     
     
     <TextView
         android:id="@+id/lblTipo"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblAltitudAcumulada"
-        android:layout_toRightOf="@+id/txtKm"
-        android:layout_alignLeft="@+id/lblDificultad"
-        android:paddingLeft="25dp"
-        android:paddingTop="25dp"
+        android:layout_toRightOf="@+id/txtParada"
+        android:layout_alignBottom="@+id/txtParada"
+        android:layout_alignLeft="@+id/lblRutaRetorno"
         android:text="@string/lblTipo" />
 
     <TextView
@@ -145,6 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblTipo"
         android:layout_toRightOf="@+id/lblTipo"
+        android:layout_alignLeft="@+id/txtRutaRetorno"
         android:text="-" />
 
 </RelativeLayout>

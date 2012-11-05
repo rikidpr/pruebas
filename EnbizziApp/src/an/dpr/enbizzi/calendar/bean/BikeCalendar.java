@@ -24,6 +24,8 @@ public class BikeCalendar implements Serializable {
 	private Integer elevationGain;
 	private Difficulty difficulty;
 	private CyclingType type;
+	private Integer aemetCodeSalida;
+	private Integer aemetCodeDestino;
 
 	/**
 	 * @return the id
@@ -129,18 +131,18 @@ public class BikeCalendar implements Serializable {
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
-	
+
 	public void setDifficulty(String string) {
 		try {
 			this.difficulty = Difficulty.valueOf(string);
-		} catch(IllegalArgumentException e){
-			Log.e(TAG, string+" no es una 'dificultad' valida");
+		} catch (IllegalArgumentException e) {
+			Log.e(TAG, string + " no es una 'dificultad' valida");
 			this.difficulty = null;
-		} catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			this.difficulty = null;
 		}
 	}
-	
+
 	/**
 	 * @return the type
 	 */
@@ -159,24 +161,40 @@ public class BikeCalendar implements Serializable {
 	public void setType(String string) {
 		try {
 			this.type = CyclingType.valueOf(string);
-		} catch(IllegalArgumentException e){
-			Log.e(TAG, string+" no es un 'tipoCiclismo' valido");
+		} catch (IllegalArgumentException e) {
+			Log.e(TAG, string + " no es un 'tipoCiclismo' valido");
 			this.difficulty = null;
-		} catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			this.difficulty = null;
 		}
 	}
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
+	
+
+
+	public Integer getAemetCodeSalida() {
+		return aemetCodeSalida;
+	}
+
+	public void setAemetCodeSalida(Integer aemetCodeSalida) {
+		this.aemetCodeSalida = aemetCodeSalida;
+	}
+
+	public Integer getAemetCodeDestino() {
+		return aemetCodeDestino;
+	}
+
+	public void setAemetCodeDestino(Integer aemetCodeDestino) {
+		this.aemetCodeDestino = aemetCodeDestino;
+	}
+
 	@Override
 	public String toString() {
 		return "BikeCalendar [id=" + id + ", date=" + date + ", route=" + route
 				+ ", returnRoute=" + returnRoute + ", stop=" + stop + ", km="
-				+ km + ", elevationGain=" + elevationGain + ", dificulty="
-				+ difficulty + ", type=" + type + "]";
+				+ km + ", elevationGain=" + elevationGain + ", difficulty="
+				+ difficulty + ", type=" + type + ", aemetCodeSalida="
+				+ aemetCodeSalida + ", aemetCodeDestino=" + aemetCodeDestino
+				+ "]";
 	}
 
 	public Integer getElevationGain() {
@@ -191,7 +209,7 @@ public class BikeCalendar implements Serializable {
 		try {
 			this.date = UtilFecha.SDF.parse(fecha);
 		} catch (ParseException e) {
-			Log.e(TAG, "Fecha en formato incorrecto:"+fecha);
+			Log.e(TAG, "Fecha en formato incorrecto:" + fecha);
 		}
 	}
 

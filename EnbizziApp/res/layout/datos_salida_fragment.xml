@@ -5,6 +5,7 @@
 
     <TextView
         android:id="@+id/lblFecha"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="25dp"
@@ -21,6 +22,7 @@
 
     <TextView
         android:id="@+id/lblRuta"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -39,6 +41,7 @@
 
     <TextView
         android:id="@+id/lblKm"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -57,6 +60,7 @@
 
     <TextView
         android:id="@+id/lblParada"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -76,6 +80,7 @@
     
     <TextView
         android:id="@+id/lblRutaRetorno"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblParada"
@@ -93,6 +98,7 @@
 
     <TextView
         android:id="@+id/lblDificultad"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -111,6 +117,7 @@
     
     <TextView
         android:id="@+id/lblAltitudAcumulada"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -129,6 +136,7 @@
 
     <TextView
         android:id="@+id/lblTipo"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
