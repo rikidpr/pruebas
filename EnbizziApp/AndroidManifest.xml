@@ -62,6 +62,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetalleSalida"
+            android:label="@string/title_detalle_salida" >
+            <intent-filter>
+                <action android:name="an.dpr.enbizzi.DETALLE_SALIDA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

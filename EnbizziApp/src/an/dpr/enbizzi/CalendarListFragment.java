@@ -1,22 +1,25 @@
 package an.dpr.enbizzi;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+
 import an.dpr.enbizzi.calendar.bean.BikeCalendar;
 import an.dpr.enbizzi.calendar.contentprovider.BikeCalendarContract;
-import an.dpr.enbizzi.util.NotificationUtil;
-import android.app.DialogFragment;
+import an.dpr.enbizzi.util.EnbizziContract;
+import an.dpr.enbizzi.util.UtilFecha;
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class CalendarListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -24,7 +27,6 @@ public class CalendarListFragment extends ListFragment implements
 	private static final String TAG = CalendarListFragment.class.getName();
 	private SimpleCursorAdapter adapter;
 	private static final String[] PROJECTION = new String[] {
-			// BikeCalendarContract.COL_ID,
 			BikeCalendarContract.COL_DATE, BikeCalendarContract.COL_ROUTE };
 
 	private String where = "";
@@ -43,6 +45,7 @@ public class CalendarListFragment extends ListFragment implements
 
 		adapter = new SimpleCursorAdapter(this.getActivity(),
 				R.layout.calendar_item, null, PROJECTION, toView, 0);
+		adapter.setViewBinder(new ViewBinder());
 		setListAdapter(adapter);
 		getLoaderManager().initLoader(0, null, this);
 	}
@@ -86,10 +89,38 @@ public class CalendarListFragment extends ListFragment implements
 		} finally {
 			c.close();
 		}
-		DialogFragment df = new DialogFragment();
-		NotificationUtil.setToastMsg(this.getActivity(),
-				bean != null ? bean.toString() : "no localizado " + id,
-				Toast.LENGTH_LONG);
+		Intent i = new Intent(EnbizziContract.ACCION_DETALLE_SALIDA);
+		i.putExtra(EnbizziContract.DATOS_SALIDA, bean);
+		startActivity(i);
 	}
 	
+
+	/**
+	 * Bind para la vista de los detalles del listado
+	 * @author rsaez
+	 *
+	 */
+	private class ViewBinder implements SimpleCursorAdapter.ViewBinder {
+		@Override
+		public boolean setViewValue(View view, Cursor cursor, int index) {
+			if (index == cursor.getColumnIndex(BikeCalendarContract.COL_DATE)) {
+				// get a locale based string for the date
+				DateFormat formatter = android.text.format.DateFormat
+						.getDateFormat(getActivity().getApplicationContext());
+				String sDate = cursor.getString((index));
+				try {
+					Log.d(TAG, "fDate:"+sDate);
+					Date fDate = formatter.parse(sDate);
+					sDate = UtilFecha.formatFecha(fDate);
+				} catch (ParseException e) {
+					Log.e(TAG,"", e);
+				}
+				((TextView) view).setText(sDate);
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
 }

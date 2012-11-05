@@ -1,5 +1,7 @@
 package an.dpr.enbizzi.calendar.bean;
 
+import an.dpr.enbizzi.R;
+
 public enum Difficulty {
 	
 	EASY(1), MEDIUM(2), HARD(3), VERY_HARD(4);
@@ -25,6 +27,25 @@ public enum Difficulty {
 	
 	public int getId(){
 		return id;
+	}
+	
+	public int getKeyString(){
+		int ret = 0;
+		switch(this){
+		case EASY:
+			ret = R.string.difficulty_EASY;
+			break;
+		case HARD:
+			ret = R.string.difficulty_HARD;
+			break;
+		case MEDIUM:
+			ret = R.string.difficulty_MEDIUM;
+			break;
+		case VERY_HARD:
+			ret = R.string.difficulty_VERY_HARD;
+			break;
+		}
+		return ret;
 	}
 
 }

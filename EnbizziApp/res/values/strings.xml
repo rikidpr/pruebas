@@ -3,12 +3,39 @@
     <string name="app_name">EnbizziApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+
+    <string name="title_activity_main">enbiZzi App</string>
     <string name="title_activity_calendar_list">CalendarList</string>
     <string name="title_activity_calendar_grid">CalendarGrid</string>
+    <string name="title_activity_calendar_tabs">Calendario</string>
+    <string name="title_detalle_salida">Detalle Salida</string>
+
     <string name="tab_calendario">Calendario</string>
     <string name="tab_proximas_salidas">Proximas</string>
     <string name="tab_marchas">Marchas</string>
-    <string name="title_activity_calendar_tabs">Calendario</string>
+    <string name="tab_datos">Datos</string>
+    <string name="tab_mapa">Mapa</string>
+    <string name="tab_orache">Orache</string>
+    
+    <!-- BikeCalendar -->
+    <string name="lblFecha">Fecha:</string>
+    <string name="lblRuta">Ruta:</string>
+    <string name="lblRutaRetorno">Vuelta por:</string>
+    <string name="lblParada">Parada</string>
+    <string name="lblKm">Km:</string>
+    <string name="lblAltitudAcumulada">Alt. acumulada:</string>
+    <string name="lblDificultad">Dificultad:</string>
+    <string name="lblTipo">Tipo:</string>
+    
+    <string name="cycling_type_BMX">BMX</string>
+    <string name="cycling_type_ROAD">Carretera</string>
+    <string name="cycling_type_INDOOR">Indoor</string>
+    <string name="cycling_type_MTB">BTT</string>
+    
+    <string name="difficulty_EASY">Facil</string>
+    <string name="difficulty_MEDIUM">Media</string>
+    <string name="difficulty_HARD">Dificil</string>
+    <string name="difficulty_VERY_HARD">Muy Dificil</string>
+    
 
 </resources>
