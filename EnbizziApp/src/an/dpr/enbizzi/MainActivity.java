@@ -159,6 +159,7 @@ public class MainActivity extends Activity {
 	
 	private void tratarXmlNet(String xmlText){
 		try {
+			Log.d(TAG, "longitud xml="+xmlText.length());
 			List<BikeCalendar> list = XMLCalendarConverter
 					.getCalendarViaNewPullParser(xmlText);
 			StringBuilder sb = new StringBuilder();

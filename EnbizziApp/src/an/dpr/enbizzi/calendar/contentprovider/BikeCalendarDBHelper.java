@@ -19,7 +19,9 @@ public class BikeCalendarDBHelper extends SQLiteOpenHelper{
 					BikeCalendarContract.COL_ROUTE +" text," +
 					BikeCalendarContract.COL_STOP +" text," +
 					BikeCalendarContract.COL_TYPE +" text," +
-					BikeCalendarContract.COL_ELEVATION_GAIN +" integer" +
+					BikeCalendarContract.COL_ELEVATION_GAIN +" integer, " +
+					BikeCalendarContract.COL_AEMET_START+" integer, " +
+					BikeCalendarContract.COL_AEMET_STOP+" integer" +
 					")";
 
 	private static final String DB_DROP_FOR_UPDATE = 

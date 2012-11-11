@@ -30,33 +30,6 @@ public class XMLCalendarConverter {
 
 	private static final String TAG = XMLCalendarConverter.class.getName();
 
-	public static List<BikeCalendar> getCalendarViaFactory()
-			throws XmlPullParserException, IOException {
-		List<BikeCalendar> rv = new ArrayList<BikeCalendar>();
-		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-		factory.setNamespaceAware(true);
-		XmlPullParser xpp = factory.newPullParser();
-
-		xpp.setInput(new StringReader(xmlText));
-		int eventType = xpp.getEventType();
-		while (eventType != XmlPullParser.END_DOCUMENT) {
-			if (eventType == XmlPullParser.START_DOCUMENT) {
-				System.out.println("Start document");
-			} else if (eventType == XmlPullParser.END_DOCUMENT) {
-				System.out.println("End document");
-			} else if (eventType == XmlPullParser.START_TAG) {
-				System.out.println("Start tag " + xpp.getName());
-			} else if (eventType == XmlPullParser.END_TAG) {
-				System.out.println("End tag " + xpp.getName());
-			} else if (eventType == XmlPullParser.TEXT) {
-				System.out.println("Text " + xpp.getText());
-			}
-			eventType = xpp.next();
-		}
-
-		return rv;
-	}
-
 	public static List<BikeCalendar> getCalendarViaNewPullParser(String xml)
 			throws XmlPullParserException, IOException {
 		List<BikeCalendar> rv = null;
@@ -67,33 +40,37 @@ public class XMLCalendarConverter {
 			parser.nextTag();
 			rv = readCalendar(parser);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.d(TAG, "Error leyendo xml calendar", e);
 		}
 		return rv;
 	}
 
 	private static List<BikeCalendar> readCalendar(XmlPullParser parser)
 			throws XmlPullParserException, IOException {
+		Log.d(TAG, "readCalendar");
 		List<BikeCalendar> list = new ArrayList<BikeCalendar>();
 		String tag = TAG + ".readCalendar";
 
 		parser.require(XmlPullParser.START_TAG, nameSpace,
 				BikeCalendarXMLTags.calendar.name());
 		while (parser.next() != XmlPullParser.END_TAG) {
+			Log.d(TAG,"paso while");
 			if (parser.getEventType() != XmlPullParser.START_TAG) {
+				Log.d(TAG,"no start tag");
 				continue;
 			}
 			String name = parser.getName();
+			Log.d(TAG,name);
 			// Starts by looking for the entry tag
 			if (name.equals(BikeCalendarXMLTags.event.name())) {
 				Log.d(tag, "padentro " + name);
 				list.add(getCalendarItem(parser));
-			} else {
+			} else if (!name.equals(BikeCalendarXMLTags.events.name())) {
 				Log.d(tag, "skip " + name);
 				skip(parser);
 			}
 		}
+		Log.d(TAG, list.toString());
 		return list;
 	}
 
@@ -116,33 +93,42 @@ public class XMLCalendarConverter {
 			} else if (next != XmlPullParser.START_TAG) {
 				continue;
 			} else {
-				switch (bcx) {
-				case elevationGain:
-					bCal.setElevationGain(Integer.valueOf(readTag(parser, bcx)));
-					break;
-				case date:
-					bCal.setDate(readTag(parser, bcx));
-					break;
-				case difficulty:
-					bCal.setDifficulty(Difficulty.valueOf(readTag(parser, bcx)));
-					break;
-				case km:
-					bCal.setKm(Float.valueOf(readTag(parser, bcx)));
-					break;
-				case route:
-					bCal.setRoute(readTag(parser, bcx));
-					break;
-				case returnRoute:
-					bCal.setReturnRoute(readTag(parser, bcx));
-					break;
-				case stop:
-					bCal.setStop(readTag(parser, bcx));
-					break;
-				case type:
-					bCal.setType(CyclingType.valueOf(readTag(parser, bcx)));
-					break;
-				default:
-					break;
+				String valor = readTag(parser, bcx);
+				if (valor != null){
+					switch (bcx) {
+					case elevationGain:
+						bCal.setElevationGain(Integer.valueOf(valor));
+						break;
+					case date:
+						bCal.setDate(valor);
+						break;
+					case difficulty:
+						bCal.setDifficulty(Difficulty.valueOf(valor));
+						break;
+					case km:
+						bCal.setKm(Float.valueOf(valor));
+						break;
+					case route:
+						bCal.setRoute(valor);
+						break;
+					case returnRoute:
+						bCal.setReturnRoute(valor);
+						break;
+					case stop:
+						bCal.setStop(valor);
+						break;
+					case type:
+						bCal.setType(CyclingType.valueOf(valor));
+						break;
+					case aemetCodeStart:
+						bCal.setAemetStart(Integer.valueOf(valor));
+						break;
+					case aemetCodeStop:
+						bCal.setAemetStop(Integer.valueOf(valor));
+						break;
+					default:
+						break;
+					}
 				}
 			}
 		} while (continuar);

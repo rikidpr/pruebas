@@ -24,8 +24,8 @@ public class BikeCalendar implements Serializable {
 	private Integer elevationGain;
 	private Difficulty difficulty;
 	private CyclingType type;
-	private Integer aemetCodeSalida;
-	private Integer aemetCodeDestino;
+	private Integer aemetStart;
+	private Integer aemetStop;
 
 	/**
 	 * @return the id
@@ -171,29 +171,13 @@ public class BikeCalendar implements Serializable {
 	
 
 
-	public Integer getAemetCodeSalida() {
-		return aemetCodeSalida;
-	}
-
-	public void setAemetCodeSalida(Integer aemetCodeSalida) {
-		this.aemetCodeSalida = aemetCodeSalida;
-	}
-
-	public Integer getAemetCodeDestino() {
-		return aemetCodeDestino;
-	}
-
-	public void setAemetCodeDestino(Integer aemetCodeDestino) {
-		this.aemetCodeDestino = aemetCodeDestino;
-	}
-
 	@Override
 	public String toString() {
 		return "BikeCalendar [id=" + id + ", date=" + date + ", route=" + route
 				+ ", returnRoute=" + returnRoute + ", stop=" + stop + ", km="
 				+ km + ", elevationGain=" + elevationGain + ", difficulty="
 				+ difficulty + ", type=" + type + ", aemetCodeSalida="
-				+ aemetCodeSalida + ", aemetCodeDestino=" + aemetCodeDestino
+				+ aemetStart + ", aemetCodeDestino=" + aemetStop
 				+ "]";
 	}
 
@@ -211,6 +195,22 @@ public class BikeCalendar implements Serializable {
 		} catch (ParseException e) {
 			Log.e(TAG, "Fecha en formato incorrecto:" + fecha);
 		}
+	}
+
+	public Integer getAemetStart() {
+		return aemetStart;
+	}
+
+	public void setAemetStart(Integer aemetStart) {
+		this.aemetStart = aemetStart;
+	}
+
+	public Integer getAemetStop() {
+		return aemetStop;
+	}
+
+	public void setAemetStop(Integer aemetStop) {
+		this.aemetStop = aemetStop;
 	}
 
 }

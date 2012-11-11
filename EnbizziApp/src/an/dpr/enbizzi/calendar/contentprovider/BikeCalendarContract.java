@@ -3,6 +3,8 @@ package an.dpr.enbizzi.calendar.contentprovider;
 import java.text.SimpleDateFormat;
 
 import an.dpr.enbizzi.calendar.bean.BikeCalendar;
+import an.dpr.enbizzi.calendar.bean.CyclingType;
+import an.dpr.enbizzi.calendar.bean.Difficulty;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -21,11 +23,13 @@ public class BikeCalendarContract {
 	public static final String COL_STOP = "STOP";
 	public static final String COL_TYPE = "TYPE";
 	public static final String COL_ELEVATION_GAIN = "ELEVATION_GAIN";
-
+	public static final String COL_AEMET_START = "AEMET_START";
+	public static final String COL_AEMET_STOP = "AEMET_STOP";
+	
 	// COLUMNS
 	public static final String[] COLUMN_NAMES = { COL_ID, COL_DATE,
 			COL_DIFFICULTY, COL_KM, COL_RETURN_ROUTE, COL_ROUTE, COL_STOP,
-			COL_TYPE, COL_ELEVATION_GAIN };
+			COL_TYPE, COL_ELEVATION_GAIN, COL_AEMET_START, COL_AEMET_STOP };
 
 	// URI
 	public static final String CONTENT_AUTHORITY = "an.dpr.enbizzi";
@@ -43,13 +47,19 @@ public class BikeCalendarContract {
 		
 		rv.put(COL_ID, bean.getId()>0 ? bean.getId() : null);
 		rv.put(COL_DATE, sdf.format(bean.getDate()));
-		rv.put(COL_DIFFICULTY, bean.getDifficulty().name());
+		rv.put(COL_DIFFICULTY, bean.getDifficulty()!=null 
+				? bean.getDifficulty().name(): 
+				Difficulty.MEDIUM.name());
 		rv.put(COL_KM, bean.getKm());
 		rv.put(COL_RETURN_ROUTE, bean.getReturnRoute());
 		rv.put(COL_ROUTE, bean.getRoute());
 		rv.put(COL_STOP, bean.getStop());
-		rv.put(COL_TYPE, bean.getType().name());
+		rv.put(COL_TYPE, bean.getType()!=null 
+				? bean.getType().name() 
+				: CyclingType.ROAD.name());
 		rv.put(COL_ELEVATION_GAIN, bean.getElevationGain());
+		rv.put(COL_AEMET_START, bean.getAemetStart());
+		rv.put(COL_AEMET_STOP, bean.getAemetStop());
 		
 		return rv;
 	}
@@ -73,6 +83,8 @@ public class BikeCalendarContract {
 		bean.setElevationGain(c.getInt(c.getColumnIndex(COL_ELEVATION_GAIN)));
 		bean.setId(c.getInt(c.getColumnIndex(COL_ID)));
 		bean.setKm(c.getFloat(c.getColumnIndex(COL_KM)));
+		bean.setAemetStart(c.getInt(c.getColumnIndex(COL_AEMET_START)));
+		bean.setAemetStop(c.getInt(c.getColumnIndex(COL_AEMET_STOP)));
 		return bean;
 	}
 

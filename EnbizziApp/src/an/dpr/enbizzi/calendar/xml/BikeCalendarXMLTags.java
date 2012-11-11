@@ -14,5 +14,7 @@ public enum BikeCalendarXMLTags {
 	difficulty,
 	km, 
 	elevationGain,
-	type;
+	type, 
+	aemetCodeStart,
+	aemetCodeStop;
 }

@@ -23,11 +23,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class CalendarService {
+	
+	private static final String URL = "http://sites.google.com/site/bikermente/calendario2013.xml";
 
 	public static String getCalendarXML() {
 		StringBuilder xml = new StringBuilder();
 		HttpClient hc = new DefaultHttpClient();
-		HttpPost postR = new HttpPost("https://sites.google.com/site/bikermente/calendarioSalidas.xml");
+		HttpPost postR = new HttpPost(URL);
 		try {
 			HttpResponse response = hc.execute(postR);
 			BufferedReader br = new BufferedReader(new InputStreamReader(
