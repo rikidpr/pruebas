@@ -19,9 +19,10 @@
     
     <!-- BikeCalendar -->
     <string name="lblFecha">Fecha:</string>
+    <string name="lblHora">Hora:</string>
     <string name="lblRuta">Ruta:</string>
     <string name="lblRutaRetorno">Vuelta por:</string>
-    <string name="lblParada">Parada</string>
+    <string name="lblParada">Parada:</string>
     <string name="lblKm">Km:</string>
     <string name="lblAltitudAcumulada">Alt. acumulada:</string>
     <string name="lblDificultad">Dificultad:</string>

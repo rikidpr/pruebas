@@ -165,12 +165,12 @@ public class MainActivity extends Activity {
 			StringBuilder sb = new StringBuilder();
 			for(BikeCalendar cal: list){
 				ContentValues values = BikeCalendarContract.getValues(cal);
+				Log.d(TAG, values.toString());
 				Uri callUri = ContentUris.withAppendedId(BikeCalendarContract.CONTENT_URI,1);
 				Uri retUri = getContentResolver().insert(callUri, values);
 				sb.append(retUri.toString());
 			}
 			NotificationUtil.setToastMsg(this, sb.toString(), Toast.LENGTH_LONG);
-			Log.d(TAG, sb.toString());
 		} catch (Exception e) {
 			Log.e(TAG, "Error!!", e);
 		}
@@ -183,6 +183,7 @@ public class MainActivity extends Activity {
 			StringBuilder sb = new StringBuilder();
 			for(BikeCalendar cal: list){
 				ContentValues values = BikeCalendarContract.getValues(cal);
+				Log.d(TAG, values.toString());
 				Uri callUri = ContentUris.withAppendedId(BikeCalendarContract.CONTENT_URI,1);
 				Uri retUri = getContentResolver().insert(callUri, values);
 				sb.append(retUri.toString());

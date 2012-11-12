@@ -1,5 +1,6 @@
 package an.dpr.enbizzi;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import an.dpr.enbizzi.calendar.bean.BikeCalendar;
@@ -24,6 +25,7 @@ public class OracheSalidaFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		Log.d(TAG, "onAttach");
+		super.onAttach(activity);
 		//FIXME no se en que metodo es el primero en que se tiene acceso a los extras!!
 		cargarPrediccion();
 	}
@@ -31,6 +33,7 @@ public class OracheSalidaFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "onCreate");
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
@@ -44,41 +47,49 @@ public class OracheSalidaFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		Log.d(TAG, "onActivityCreated");
+		super.onActivityCreated(savedInstanceState);
 	}
 
 	@Override
 	public void onStart() {
 		Log.d(TAG, "onStart");
+		super.onStart();
 	}
 
 	@Override
 	public void onResume() {
 		Log.d(TAG, "onResume");
+		super.onResume();
 	}
 
 	@Override
 	public void onPause() {
 		Log.d(TAG, "onPause");
+		super.onPause();
 	}
 
 	@Override
 	public void onStop() {
 		Log.d(TAG, "onStop");
+		super.onStop();
 	}
 
 	@Override
 	public void onDestroyView() {
 		Log.d(TAG, "onDestroyView");
+		super.onDestroyView();
 	}
 
 	@Override
 	public void onDestroy() {
 		Log.d(TAG, "onDestroy");
+		super.onDestroy();
 	}
 
 	@Override
 	public void onDetach() {
 		Log.d(TAG, "onDetach");
+		super.onDetach();
 	}
 	
 	//metodos
@@ -93,7 +104,11 @@ public class OracheSalidaFragment extends Fragment {
 					@Override
 					protected PrediccionAemet doInBackground(Object... params){
 						Log.d(TAG, "doInBackground:"+params);
-						Date fecha = (Date)params[0];
+						Calendar cal = Calendar.getInstance();
+						cal.set(Calendar.YEAR, 2012);
+						cal.set(Calendar.MONTH, 10);
+						cal.set(Calendar.DAY_OF_MONTH, 14);
+						Date fecha = cal.getTime();//(Date)params[0];
 						Integer aemetCode = (Integer)params[1];
 						PrediccionAemet pred = null;
 						try{

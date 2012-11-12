@@ -1,8 +1,11 @@
 package an.dpr.enbizzi.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import android.util.Log;
 
 /**
  * Clase con utiles de manejo de fechas
@@ -15,6 +18,7 @@ public class UtilFecha {
 	public static final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
 	public static final SimpleDateFormat SDF_FH = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	public static final SimpleDateFormat SDF_H = new SimpleDateFormat("HH:mm");
+	private static final String TAG = UtilFecha.class.getName();
 	/**
 	 * formato dd/MM/yyyy
 	 * 
@@ -33,6 +37,11 @@ public class UtilFecha {
 	 */
 	public static String verFechaHora(Date fecha) {
 		return formatFecha(SDF_FH, fecha);
+	}
+	
+	public static Date getFechaHora(String fecha) 
+			throws ParseException{
+		return SDF_FH.parse(fecha);
 	}
 
 	/**

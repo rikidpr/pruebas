@@ -80,9 +80,7 @@ public class BikeCalendarCP extends ContentProvider {
 		}
 
 		SQLiteDatabase con = dbHelper.getWritableDatabase();
-		Log.d(TAG, "valor id:"+values.getAsInteger(BikeCalendarContract.COL_ID));
 		long id = con.insert(BikeCalendarContract.TABLE_NAME, null, values);
-		Log.d(TAG, "insertado con id="+id);
 		if (id >= 0) {
 			rv = ContentUris.withAppendedId(BikeCalendarContract.CONTENT_URI,
 					id);

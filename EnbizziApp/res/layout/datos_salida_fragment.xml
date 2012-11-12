@@ -21,12 +21,30 @@
         android:text="-"/>
 
     <TextView
+        android:id="@+id/lblHora"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingTop="25dp"
+        android:layout_below="@+id/lblFecha"
+        android:text="@string/lblHora" />
+    
+    <TextView
+        android:id="@+id/txtHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblHora"
+        android:layout_toRightOf="@+id/lblAltitudAcumulada"
+        android:text="-"/>
+
+    <TextView
         android:id="@+id/lblRuta"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/lblFecha"
+        android:layout_below="@+id/lblHora"
         android:paddingLeft="25dp"
         android:paddingTop="25dp"
         android:text="@string/lblRuta" />

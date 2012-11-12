@@ -246,21 +246,23 @@ public class DetalleSalidaUtil{
 		do{
 			eventType = xpp.getEventType();
 			tag = AemetLocalidadTags.get(xpp.getName());
-			switch(tag){
-			case tag_maxima:
-				prediccion = addMaxTemperatura(prediccion, xpp);
-				break;
-			case tag_minima:
-				prediccion = addMinTemperatura(prediccion, xpp);
-				break;
-			case tag_dato:
-				prediccion = addDatoTemperatura(prediccion, xpp);
-				break;
-			case tag_temperatura:
-				if (eventType == XmlPullParser.END_TAG){
-					continuar = false;
+			if (tag!=null){
+				switch(tag){
+				case tag_maxima:
+					prediccion = addMaxTemperatura(prediccion, xpp);
+					break;
+				case tag_minima:
+					prediccion = addMinTemperatura(prediccion, xpp);
+					break;
+				case tag_dato:
+					prediccion = addDatoTemperatura(prediccion, xpp);
+					break;
+				case tag_temperatura:
+					if (eventType == XmlPullParser.END_TAG){
+						continuar = false;
+					}
+					break;
 				}
-				break;
 			}
 			if (continuar){
 				xpp.next();
@@ -316,27 +318,29 @@ public class DetalleSalidaUtil{
 		do{
 			tag = AemetLocalidadTags.get(xpp.getName());
 			eventType = xpp.getEventType();
-			switch(tag){
-			case tag_viento:
-				if (eventType == XmlPullParser.START_TAG){
-					String periodo = getAttributeValue(xpp, AemetLocalidadTags.param_periodo.getValue());
-					av.setPeriodo(AemetPeriodo.getPeriodo(periodo));
-				} else {
-					continuar = false;
+			if (tag != null){
+				switch(tag){
+				case tag_viento:
+					if (eventType == XmlPullParser.START_TAG){
+						String periodo = getAttributeValue(xpp, AemetLocalidadTags.param_periodo.getValue());
+						av.setPeriodo(AemetPeriodo.getPeriodo(periodo));
+					} else {
+						continuar = false;
+					}
+					break;
+				case tag_direccion:
+					if (eventType == XmlPullParser.START_TAG){
+						xpp.next();
+						av.setDireccion(xpp.getText());
+					}
+					break;
+				case tag_velocidad:
+					if (eventType == XmlPullParser.START_TAG){
+						xpp.next();
+						av.setVelocidad(Integer.valueOf(xpp.getText()));
+					}
+					break;
 				}
-				break;
-			case tag_direccion:
-				if (eventType == XmlPullParser.START_TAG){
-					xpp.next();
-					av.setDireccion(xpp.getText());
-				}
-				break;
-			case tag_velocidad:
-				if (eventType == XmlPullParser.START_TAG){
-					xpp.next();
-					av.setVelocidad(Integer.valueOf(xpp.getText()));
-				}
-				break;
 			}
 			if (continuar){
 				xpp.next();

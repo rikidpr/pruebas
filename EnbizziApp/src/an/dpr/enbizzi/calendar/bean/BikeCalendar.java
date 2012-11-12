@@ -190,8 +190,9 @@ public class BikeCalendar implements Serializable {
 	}
 
 	public void setDate(String fecha) {
+		Log.d(TAG, "fecha:"+fecha);
 		try {
-			this.date = UtilFecha.SDF.parse(fecha);
+			this.date = UtilFecha.getFechaHora(fecha);
 		} catch (ParseException e) {
 			Log.e(TAG, "Fecha en formato incorrecto:" + fecha);
 		}

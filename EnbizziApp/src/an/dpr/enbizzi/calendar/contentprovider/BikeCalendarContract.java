@@ -43,10 +43,12 @@ public class BikeCalendarContract {
 	
 	public static ContentValues getValues(BikeCalendar bean) {
 		ContentValues rv = new ContentValues();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		//formato para SQLite
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		
 		rv.put(COL_ID, bean.getId()>0 ? bean.getId() : null);
-		rv.put(COL_DATE, sdf.format(bean.getDate()));
+		String txtDate = sdf.format(bean.getDate());
+		rv.put(COL_DATE, txtDate);
 		rv.put(COL_DIFFICULTY, bean.getDifficulty()!=null 
 				? bean.getDifficulty().name(): 
 				Difficulty.MEDIUM.name());
@@ -60,7 +62,6 @@ public class BikeCalendarContract {
 		rv.put(COL_ELEVATION_GAIN, bean.getElevationGain());
 		rv.put(COL_AEMET_START, bean.getAemetStart());
 		rv.put(COL_AEMET_STOP, bean.getAemetStop());
-		
 		return rv;
 	}
 	

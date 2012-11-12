@@ -40,7 +40,7 @@ public class XMLCalendarConverter {
 			parser.nextTag();
 			rv = readCalendar(parser);
 		} catch (IOException e) {
-			Log.d(TAG, "Error leyendo xml calendar", e);
+			Log.e(TAG, "Error leyendo xml calendar", e);
 		}
 		return rv;
 	}
@@ -54,19 +54,14 @@ public class XMLCalendarConverter {
 		parser.require(XmlPullParser.START_TAG, nameSpace,
 				BikeCalendarXMLTags.calendar.name());
 		while (parser.next() != XmlPullParser.END_TAG) {
-			Log.d(TAG,"paso while");
 			if (parser.getEventType() != XmlPullParser.START_TAG) {
-				Log.d(TAG,"no start tag");
 				continue;
 			}
 			String name = parser.getName();
-			Log.d(TAG,name);
 			// Starts by looking for the entry tag
 			if (name.equals(BikeCalendarXMLTags.event.name())) {
-				Log.d(tag, "padentro " + name);
 				list.add(getCalendarItem(parser));
 			} else if (!name.equals(BikeCalendarXMLTags.events.name())) {
-				Log.d(tag, "skip " + name);
 				skip(parser);
 			}
 		}
@@ -82,11 +77,8 @@ public class XMLCalendarConverter {
 		boolean continuar = true;
 		do {
 			int next = parser.next();
-			Log.d(TAG, ""+parser.getName());
 			BikeCalendarXMLTags bcx = BikeCalendarXMLTags.valueOf(parser
 					.getName());
-			Log.d(TAG + ".getCalendarItem",
-					parser.getName() != null ? parser.getName() : "null");
 			if (next == XmlPullParser.END_TAG
 					&& BikeCalendarXMLTags.event.equals(bcx)) {
 				continuar = false;
@@ -140,7 +132,7 @@ public class XMLCalendarConverter {
 			throws IOException, XmlPullParserException {
 		parser.require(XmlPullParser.START_TAG, nameSpace, tag.name());
 		String valor = null;
-		Log.d(TAG + ".readTag", tag.name());
+//		Log.d(TAG + ".readTag", tag.name());
 		if (parser.next() == XmlPullParser.TEXT) {
 			valor = parser.getText();
 			parser.nextTag();

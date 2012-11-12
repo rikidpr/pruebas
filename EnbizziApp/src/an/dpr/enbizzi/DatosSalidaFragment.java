@@ -18,6 +18,7 @@ public class DatosSalidaFragment extends Fragment {
 	private static final String TAG = DatosSalidaFragment.class.getName();
 
 	private TextView txtFecha;
+	private TextView txtHora;
 	private TextView txtAlt;
 	private TextView txtDif;
 	private TextView txtKm;
@@ -34,6 +35,7 @@ public class DatosSalidaFragment extends Fragment {
 		View view = inflater.inflate(R.layout.datos_salida_fragment, container,
 				false);
 		txtFecha = (TextView) view.findViewById(R.id.txtFecha);
+		txtHora = (TextView) view.findViewById(R.id.txtHora);
 		txtAlt= (TextView) view.findViewById(R.id.txtAltitudAcumulada);
 		txtDif = (TextView) view.findViewById(R.id.txtDificultad);
 		txtKm = (TextView) view.findViewById(R.id.txtKm);
@@ -53,6 +55,7 @@ public class DatosSalidaFragment extends Fragment {
 			BikeCalendar salida = (BikeCalendar) extras.get(EnbizziContract.DATOS_SALIDA);
 			if (salida != null) {
 				txtFecha.setText(UtilFecha.formatFecha(salida.getDate()));
+				txtHora.setText(UtilFecha.verHora(salida.getDate()));
 				txtAlt.setText(salida.getElevationGain()+"m");
 				txtDif.setText(getString(salida.getDifficulty().getKeyString()));
 				txtKm.setText(salida.getKm()+" km");
