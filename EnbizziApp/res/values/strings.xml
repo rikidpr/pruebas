@@ -38,5 +38,19 @@
     <string name="difficulty_HARD">Dificil</string>
     <string name="difficulty_VERY_HARD">Muy Dificil</string>
     
+    <!--  orache -->
+    <string name="temperatura">Temperatura</string>
+    <string name="min">Min.</string>
+    <string name="max">Max.</string>
+    <string name="viento">Viento</string>
+    <string name="manyana">Mañana</string>
+    <string name="tarde">Tarde</string>
+    <string name="probabilidad_precipitacion">Prob. Precipitacion</string>
+    <string name="cargando_info_aemet">Cargando info aemet</string>
+    <string name="no_obtenida_info_aemet">No se ha podido obtener informacion meteorologica</string>
+    <string name="kmh">km/h</string>
+    <string name="grados_temp">Cº</string>
+    <string name="percent">%</string>
+    
 
 </resources>

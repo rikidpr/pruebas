@@ -1,13 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:layout_height="wrap_content"
+    android:columnCount="2">
 
-<TextView
-    android:id="@+id/textView1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:text="Orache Salida (por implementar)" />
+    <TextView
+        android:id="@+id/txtLocalidad"
+        android:text="localidad"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txtFecha"
+        android:text="fecha"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/lblTituloTemperatura"
+        android:text="@string/temperatura" />
+
+    <TextView android:id="@+id/lblAux1" />
+
+    <TextView
+        android:id="@+id/lblMinTemp"
+        android:text="@string/min" />
+
+    <TextView
+        android:id="@+id/lblMaxTemp"
+        android:text="@string/max" />
+
+    <TextView
+        android:id="@+id/txtMinTemp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/txtMaxTemp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/lblTituloViento"
+        android:text="@string/viento" />
+
+    <TextView android:id="@+id/lblAux2" />
+
+    <TextView
+        android:id="@+id/lblMnyViento"
+        android:text="@string/manyana" />
+
+    <TextView
+        android:id="@+id/lblTardeViento"
+        android:text="@string/tarde" />
+
+    <TextView
+        android:id="@+id/txtMnyViento"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/txtTardeViento"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/lblTituloProbPre"
+        android:text="@string/probabilidad_precipitacion" />
+
+    <TextView android:id="@+id/lblAux3" />
+
+    <TextView
+        android:id="@+id/lblMnyProbPre"
+        android:text="@string/manyana" />
+
+    <TextView
+        android:id="@+id/lblTardeProbPre"
+        android:text="@string/tarde" />
+
+    <TextView
+        android:id="@+id/txtMnyProbPre"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/txtTardeProbPre"
+        android:text="" />
+
+</GridLayout>

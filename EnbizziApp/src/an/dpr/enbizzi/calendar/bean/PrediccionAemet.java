@@ -9,6 +9,7 @@ import java.util.Map;
 public class PrediccionAemet {
 
 	private String provincia;
+	private String localidad;
 	private String prediccion;
 	private Date dia;
 	private Map<AemetPeriodo, Integer> probPrecipitacion;
@@ -23,12 +24,27 @@ public class PrediccionAemet {
 	private Map<AemetHora, Integer> horaSenTermica;
 
 	/**
+	 * @return the localidad
+	 */
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	/**
+	 * @param localidad
+	 *            the localidad to set
+	 */
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	/**
 	 * @return the provincia
 	 */
 	public String getProvincia() {
 		return provincia;
 	}
-
+	
 	/**
 	 * @param provincia
 	 *            the provincia to set

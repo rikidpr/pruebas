@@ -1,5 +1,6 @@
 package an.dpr.enbizzi;
 
+import an.dpr.enbizzi.listener.OracheTabListener;
 import an.dpr.enbizzi.listener.TabListener;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -44,8 +45,7 @@ public class DetalleSalida extends Activity {
 		tab = actionBar.newTab();
 		tab.setTag(TAB_ORACHE);
 		tab.setText(R.string.tab_orache);
-		tab.setTabListener(new TabListener<OracheSalidaFragment>(this,
-				TAB_ORACHE, OracheSalidaFragment.class));
+		tab.setTabListener(new OracheTabListener(this, TAB_ORACHE));
 		actionBar.addTab(tab);
 	}
 	

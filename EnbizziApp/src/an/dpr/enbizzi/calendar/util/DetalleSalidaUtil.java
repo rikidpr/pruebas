@@ -32,12 +32,13 @@ public class DetalleSalidaUtil{
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	private static final String AEMET_URL_BASE_1 = "http://www.aemet.es/xml/municipios/localidad_";
 	private static final String AEMET_URL_BASE_2 = ".xml";
-//	private static final String RUTA_FILE_XML = "/programas/apache-tomcat-6.0.18/webapps/dpr-restfullprueba/localidad_50003.xml";
 	
 	public static PrediccionAemet getPrediccion(Integer aemetCode, Date fecha)
 			throws XmlPullParserException, IOException {
 		Log.d(TAG, "-init-");
 		PrediccionAemet ret = null;
+		String provincia = null;
+		String localidad = null;
 		String xml = leerXML(aemetCode);
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -47,12 +48,23 @@ public class DetalleSalidaUtil{
 			int eventType = xpp.getEventType();
 			do {
 				if (eventType == XmlPullParser.START_TAG) {
+					if (provincia == null){
+						provincia = getTagValue(xpp, AemetLocalidadTags.tag_provincia);
+					}
+					if (localidad == null){
+						localidad = getTagValue(xpp, AemetLocalidadTags.tag_nombre);
+					}
 					if (isDia(xpp, fecha)) {
 						ret = leerPrediccion(xpp);
 					}
 				}
 				eventType = xpp.next();
-			} while (eventType != XmlPullParser.END_DOCUMENT);
+			} while (eventType != XmlPullParser.END_DOCUMENT && ret==null);
+			if (ret!=null){
+				ret.setDia(fecha);
+				ret.setLocalidad(localidad);
+				ret.setProvincia(provincia);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Log.e(TAG, "", e);
@@ -60,6 +72,21 @@ public class DetalleSalidaUtil{
 		return ret;
 	}
 	
+
+	private static String getTagValue(XmlPullParser xpp, AemetLocalidadTags pTag)
+			throws XmlPullParserException, IOException {
+		String ret = null;
+		if (xpp != null && pTag != null) {
+			AemetLocalidadTags actualTag = AemetLocalidadTags.get(xpp.getName());
+			if (pTag.equals(actualTag)) {
+				xpp.next();
+				ret = xpp.getText();
+				Log.d(TAG, "Estamos en tag "+pTag.name()+" con ret = "+ret);
+			}
+		}
+		return ret;
+	}
+
 	private static String leerXML(Integer aemetCode) throws IOException {
 		StringBuilder ret = new StringBuilder();
 		try {
