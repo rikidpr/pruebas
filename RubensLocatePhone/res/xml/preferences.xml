@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <EditTextPreference
-       android:key="login"
-       android:title="@string/conf.login"
-       android:summary="@string/conf.loginDesc"
-       android:dialogTitle="@string/conf.login" />
+        android:dialogTitle="@string/conf.login"
+        android:key="login"
+        android:summary="@string/conf.loginDesc"
+        android:title="@string/conf.login" />
     <EditTextPreference
-       android:key="pass"
-       android:password="true"
-       android:title="@string/conf.pass"
-       android:summary="@string/conf.passDesc"
-       android:dialogTitle="@string/conf.pass" />
+        android:dialogTitle="@string/conf.pass"
+        android:key="pass"
+        android:password="true"
+        android:summary="@string/conf.passDesc"
+        android:title="@string/conf.pass" />
     <EditTextPreference
-       android:key="code"
-       android:title="@string/conf.code"
-       android:summary="@string/conf.codeDesc"
-       android:dialogTitle="@string/conf.code" />
+        android:dialogTitle="@string/conf.code"
+        android:key="code"
+        android:summary="@string/conf.codeDesc"
+        android:title="@string/conf.code" />
     <EditTextPreference
-       android:key="minTime"
-       android:title="@string/conf.min.time"
-       android:summary="@string/conf.min.time.desc"
-       android:dialogTitle="@string/conf.min.time" />
+        android:dialogTitle="@string/conf.min.time"
+        android:key="minTime"
+        android:summary="@string/conf.min.time.desc"
+        android:title="@string/conf.min.time" />
     <EditTextPreference
-       android:key="minDistance"
-       android:title="@string/conf.min.distance"
-       android:summary="@string/conf.min.distance.desc"
-       android:dialogTitle="@string/conf.min.distance" />
+        android:dialogTitle="@string/conf.min.distance"
+        android:key="minDistance"
+        android:summary="@string/conf.min.distance.desc"
+        android:title="@string/conf.min.distance" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="gpsProvider"
+        android:summaryOff="@string/gps.provider.disable"
+        android:summaryOn="@string/gps.provider.enable"
+        android:title="@string/gps.provider" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="networkProvider"
+        android:summaryOff="@string/network.provider.disable"
+        android:summaryOn="@string/network.provider.enable"
+        android:title="@string/network.provider" />
+
 </PreferenceScreen>

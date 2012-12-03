@@ -7,26 +7,20 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="97dp"
+        android:text="LocatePhone pre-Alpha" />
 
-    <Button
-        android:id="@+id/btnRLP"
+    <TextView
+        android:id="@+id/txtStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
         android:layout_alignLeft="@+id/textView1"
-        android:onClick="onClickRLP"
-        android:text="Rubens locate phone" />
-
-    <Button
-        android:id="@+id/btnLoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnRLP"
-        android:layout_alignLeft="@+id/textView1"
-        android:text="getLocation" />
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="34dp"
+        android:text="" />
 
 </RelativeLayout>

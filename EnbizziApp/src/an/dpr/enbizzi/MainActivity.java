@@ -9,6 +9,7 @@ import an.dpr.enbizzi.calendar.bean.Difficulty;
 import an.dpr.enbizzi.calendar.contentprovider.BikeCalendarContract;
 import an.dpr.enbizzi.calendar.network.CalendarService;
 import an.dpr.enbizzi.calendar.xml.XMLCalendarConverter;
+import an.dpr.enbizzi.dialog.EnbizziDialog;
 import an.dpr.enbizzi.twitter.TuitsEnbizzi;
 import an.dpr.enbizzi.util.NotificationUtil;
 import android.app.Activity;
@@ -110,6 +111,7 @@ public class MainActivity extends Activity {
 	}
 	
 	protected void launchInfo() {
+		showDialog();
 		Cursor c = getContentResolver().query(
 				BikeCalendarContract.CONTENT_URI, 
 				BikeCalendarContract.COLUMN_NAMES,
@@ -120,6 +122,21 @@ public class MainActivity extends Activity {
 			cont++;
 		} while(c.moveToNext());
 		NotificationUtil.setToastMsg(this, "resultados:"+cont, Toast.LENGTH_LONG);
+	}
+	
+	void showDialog() {
+	    EnbizziDialog dialog = EnbizziDialog.newInstance("titulo", "mensaje");
+	    dialog.show(getFragmentManager(), "dialog");
+	}
+
+	public void doPositiveClick() {
+	    // Do stuff here.
+	    Log.i("EnbizziDialog", "Positive click!");
+	}
+
+	public void doNegativeClick() {
+	    // Do stuff here.
+	    Log.i("EnbizziDialog", "Negative click!");
 	}
 
 	protected void launchList() {

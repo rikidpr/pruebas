@@ -3,4 +3,21 @@
         android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/menu_start_service"
+        android:title="@string/menu_start_service"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/menu_stop_service"
+        android:title="@string/menu_stop_service"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/menu_registra_posicion"
+        android:title="@string/menu_registra_posicion"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/menu_go_web"
+        android:title="@string/menu_go_web"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    
 </menu>

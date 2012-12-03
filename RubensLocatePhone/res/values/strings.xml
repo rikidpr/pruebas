@@ -2,9 +2,14 @@
 
     <string name="app_name">RubensLocatePhone</string>
     <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
     
-    <string name="title_activity_main">MainActivity</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_start_service">Start Service</string>
+    <string name="menu_stop_service">Stop Service</string>
+    <string name="menu_registra_posicion">Registra Posicion</string>
+    <string name="menu_go_web">Go web</string>
+    
+    <string name="title_activity_main">RubensLocatePhone</string>
     <string name="title_settings">App Settings</string>
     
     <string name="conf.login">Login</string>
@@ -21,5 +26,14 @@
     <string name="conf.min.time.desc">Tiempo minimo para lanzar un posicionamiento</string>
     <string name="conf.min.distance.desc">Distancia Minima para lanzar un posicionamiento</string>
     <string name="conf.intervalDesc">Minutos cada los que registramos posicion</string>
+    <string name="gps.provider.disable">Activar GPS</string>
+    <string name="gps.provider.enable">Desactivar GPS</string>
+    <string name="gps.provider">GPS Provider</string>
+    <string name="network.provider">NETWORK Provider</string>
+    <string name="network.provider.disable">Desactivar NETWORK</string>
+    <string name="network.provider.enable">Activar NETWORK</string>
+
+    <string name="status.on">Service Running</string>
+    <string name="status.off">Service Stop</string>
 
 </resources>
